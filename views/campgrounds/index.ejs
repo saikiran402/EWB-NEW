@@ -1,0 +1,50 @@
+<% include ../partials/header %>
+  <header class="jumbotron">
+    <h1><span class="glyphicon glyphicon-tent align-bottom" aria-hidden="true"></span> Welcome</h1>
+    <p>View our hand-picked campgrounds around the world</p>
+    <form class="form-inline" action="/campgrounds" method="GET">
+      <div class="form-group has-feedback">
+        <label for="search"></label>
+        <input class="form-control" type="text" name="search" placeholder="Search Projects" autocomplete="off" />
+        <span class="glyphicon glyphicon-search form-control-feedback" aria-hidden="true"></span>
+      </div>
+    </form>
+    <hr>
+    <a class="pull-left" href="/campgrounds/idea">
+      <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+       Submit idea
+    </a>
+
+    <a class="pull-left" href="/campgrounds/Contact" style="padding-left: 20px;">
+      Contact US
+    </a>
+
+    <a class="pull-right" href="https://drive.google.com/uc?authuser=0&id=0B_JViI_zq5pzY1c4WVZGSHVNUjg&export=download">
+      <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+      Download PAF
+    </a>
+  </header>
+
+  <div class="row text-center" style="display: flex; flex-wrap: wrap;">
+    <% if (noMatch !== null) {%>
+      <div class="col-md-12">
+        <h4><%= noMatch %></h4>
+      </div>
+    <% } %>
+    <% campgrounds.forEach(campground => {%>
+      <div class="col-md-3 col-sm-6">
+        <div class="thumbnail card">
+          <img class="campground__image" data-src="<%= campground.image.url %>" alt="<%= campground.name %>" />
+          <div class="caption">
+            <h4 class="caption"><%= campground.name %></h4>
+          </div>
+          <p>
+            <a class="btn btn-primary btn-sm btn-b-mg" href="/campgrounds/<%= campground._id %>">
+              More Info
+            </a>
+          </p>
+        </div>
+      </div>
+    <% })%>
+  </div>
+<% include ../partials/footer %>
